@@ -54,4 +54,57 @@ const getMoreSearchProducts = <T>(products: T[]): T => {
     return products[myIndex];
 }
 
+// Part IV
+// Using a type parameter in generics that is constrained by another type parameter
+function anotherFunction<T, U extends number>(val1: T, val2: U):object {
+    return {
+        val1,
+        val2
+    }
+}
+
+// using this method -.as U extends type number, you cannot enter a string for the val2
+anotherFunction(3, "4");
+
+
+// real use case
+interface Database {
+    connetion: string,
+    username: string,
+    password: string
+}
+
+function realWorldFunction<T, U extends Database>(val1: T, val2: U):object {
+    return {
+        val1,
+        val2
+    }
+}
+
+realWorldFunction(1, {connetion: "connect", username: "JR", password: "123PW"});
+
+// PART V
+// Using classes as gererics
+// Example 2 Sellable items 
+interface Quiz {
+    name: string,
+    type: string
+}
+
+interface Course {
+    name: string,
+    author: string,
+    subject: string
+}
+
+// this class will be able to handle the commen use cases for example in common libraries
+class Sellable<T> {
+    public cart: T[] = [];
+
+    // Now this method can handle any kind of items because its class type is generic
+    addToCart(product: T) {
+        this.cart.push(product)
+    }
+}
+
 

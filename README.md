@@ -44,7 +44,7 @@ learning typescript
     6. now ts compiler must know that it has to distribute the compiled ts code into the ./dist/index.js file
         - in tsconfig
         - "outDir": "./dist"
-        - start compiler with> tsc -w index.ts // the option -w puts the compiler in watch mode which includes then the tsconfig.json > but other options of the compiler also do
+        - start compiler with> tsc -w  // the option -w puts the compiler in watch mode which includes then the tsconfig.json > but other options of the compiler also do
     7. Start a server on localhost where I can run the project > a lot of packages available for that with node.js > we run lite-server
         - npm install lite-server
         - start server on localhost > in package.json > add scrip start lite-server
