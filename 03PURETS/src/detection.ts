@@ -58,3 +58,35 @@ function isAdminAccount(account: User | Admin) {
     return false;
 
 }
+
+// PART III
+// Erverything which has been initialized with the "new" keyword can be identified with "instanceof"
+const y = new Date();
+
+function logValue(x: Date | string) {
+    if (x instanceof Date) {
+        console.log(x.toUTCString());
+    } else {
+        console.log(x.toUpperCase());
+    }
+}
+
+// PART IV
+// type predicates
+type Fish = {swim: () => void};
+type Bird = {fly: () => void};
+
+// we want to return a true or false
+function isFish(pet: Fish | Bird) {
+    return (pet as Fish).swim !== undefined;
+}
+
+function getFood(pet: Fish | Bird) {
+    if(isFish(pet)) {
+        pet; // although we have checked it is a fish, typescipt is still confused when you hover over pet variable; because the isFish() method returns a boolean but not a type of Fish or Bird
+        return "fish food";
+    } else {
+        pet;
+        return "bird food";
+    }
+}
