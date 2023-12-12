@@ -77,16 +77,63 @@ type Fish = {swim: () => void};
 type Bird = {fly: () => void};
 
 // we want to return a true or false
-function isFish(pet: Fish | Bird) {
+function isFish(pet: Fish | Bird): pet is Fish { // now the true value is casted as Fish
     return (pet as Fish).swim !== undefined;
 }
 
 function getFood(pet: Fish | Bird) {
     if(isFish(pet)) {
         pet; // although we have checked it is a fish, typescipt is still confused when you hover over pet variable; because the isFish() method returns a boolean but not a type of Fish or Bird
+        // solution > casting the above function as Fish
         return "fish food";
     } else {
         pet;
         return "bird food";
+    }
+}
+
+// PART VI
+// a) Discriminated Unions
+interface Circle {
+    // with the same property in every interface you can check it's kind
+    kind: "cirlce",
+    radius: number
+}
+
+interface Square {
+    kind: "square",
+    side: number
+}
+
+interface Rectangle {
+    kind: "recatangle",
+    length: number,
+    width: number
+}
+
+type Shape = Circle | Square | Rectangle;
+
+function getTrueShape(shape: Shape) {
+    // By checking the type with the property of the interface, typescript than only proposes/allows methods belonging to the corresponding type  
+    if (shape.kind === "cirlce") {
+        return Math.PI * shape.radius ** 2
+    }
+    // return shape.side * shape.side
+}
+
+// b) The never type and exhaustiveness checking 
+// The above function does not work in case you add a further type to your code (in this case we added Rectangle)
+function getArea(shape: Shape) {
+    switch(shape.kind) {
+        case "cirlce":
+            return Math.PI * shape.radius ** 2;
+        case "square":
+            return shape.side * shape.side;
+        // Precautionary step to assure that the code is future proofed
+        // The code is complaining beause we added the "rectangle" shape and that is what we want in oder to add the "Rectangle" case to the code.
+        default: 
+            const _exhaustiveCheck: never = shape;
+            return _exhaustiveCheck;
+
     }
 }
