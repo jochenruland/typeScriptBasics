@@ -3,7 +3,7 @@
 // a)  Defining an Array like this will attribute the type never and you cannot add any values
 /*
 const superHeros = []
-superHeros.push("spiderman");
+superHeros.push("spiderman"); // throughs an error
 */
 
 // better practice
