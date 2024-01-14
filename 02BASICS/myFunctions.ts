@@ -63,7 +63,7 @@ const getHello = (s: string): string => {
     return "";  // we must return an empty string
 }
 
-// PART IV
+// PART IV - Arrow functions
 
 const heros = ["thor", "spiderman", "ironman"];
 //const heros = [1,2,3];
@@ -74,7 +74,7 @@ heros.map((hero): string => {
     return `hero is ${hero}`
 })
 
-// PART V 
+// PART V - Error logging
 
 // log Errors to the console
 // not returning anything means the function is of type "void" -> this should be made explicit
